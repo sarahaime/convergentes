@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script type="text/javascript">
         window.onload = function () {
           graficar(true);
@@ -11,25 +11,39 @@
         };
 
         function graficar(anima) {
-            let chart = new CanvasJS.Chart("chartContainer", {
-                theme: "light2", // "light1", "dark1", "dark2"
-                animationEnabled: anima, // change to true
-                title:{
-                    text: "¿Cuál es su pizzería favorita?"
-                },
-                data: [
-                    {
-                        // Change type to "bar", "area", "spline", "pie",etc.
-                        type: "column",
-                        dataPoints: [
-                            { label: "Papa Johns",  y: 10  ,  indexLabel:"10" },
-                            { label: "Dominos", y: 23 ,  indexLabel: "23" },
-                            { label: "PizzaHut", y: 25,  indexLabel: "45"  }
-                        ]
-                    }
-                ]
+
+            $.get('/encuesta', function (ans) {
+                console.log(ans);
+
+                // let puntos = [];
+                //
+                // for(let i in ans){
+                //     let aux = ans[i];
+                //     puntos.push({ label: aux.label,  y: aux.y  ,  indexLabel: aux.indexLabel.toString()  });
+                // }
+
+                let chart = new CanvasJS.Chart("chartContainer", {
+                    theme: "light2", // "light1", "dark1", "dark2"
+                    animationEnabled: anima, // change to true
+                    title:{
+                        text: "¿Cuál es su pizzería favorita?"
+                    },
+                    data: [
+                        {
+                            // Change type to "bar", "area", "spline", "pie",etc.
+                            type: "column",
+                            dataPoints: ans
+                            // dataPoints: [
+                            //     { label: "Papa Johns",  y: 10  ,  indexLabel:"10" },
+                            //     { label: "Dominos", y: 23 ,  indexLabel: "23" },
+                            //     { label: "PizzaHut", y: 25,  indexLabel: "45"  }
+                            // ]
+                        }
+                    ]
+                });
+                chart.render();
             });
-            chart.render();
+
         }
 
 
