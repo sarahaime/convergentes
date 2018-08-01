@@ -6,7 +6,7 @@
         window.onload = function () {
           graficar();
 
-          setInterval(graficar, 5);
+          setInterval(graficar, 5000);
 
         };
 
@@ -15,18 +15,16 @@
                 theme: "light2", // "light1", "dark1", "dark2"
                 animationEnabled: true, // change to true
                 title:{
-                    text: "¿Cuál es su ingrediente de pizza favorito?"
+                    text: "¿Cuál es su pizzería favorita?"
                 },
                 data: [
                     {
                         // Change type to "bar", "area", "spline", "pie",etc.
                         type: "column",
                         dataPoints: [
-                            { label: "Peperoni",  y: 10  },
-                            { label: "Piña", y: 23  },
-                            { label: "Queso", y: 25  },
-                            { label: "Tomate",  y: 30  },
-                            { label: "Jamón",  y: 28  }
+                            { label: "Papa Jhons",  y: 10  },
+                            { label: "Dominoes", y: 23  },
+                            { label: "Pizza Hot", y: 25  }
                         ]
                     }
                 ]
