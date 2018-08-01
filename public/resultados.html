@@ -4,16 +4,16 @@
 
     <script type="text/javascript">
         window.onload = function () {
-          graficar();
+          graficar(true);
 
-          setInterval(graficar, 5000);
+          setInterval(graficar,  5000, false);
 
         };
 
-        function graficar() {
+        function graficar(anima) {
             let chart = new CanvasJS.Chart("chartContainer", {
                 theme: "light2", // "light1", "dark1", "dark2"
-                animationEnabled: true, // change to true
+                animationEnabled: anima, // change to true
                 title:{
                     text: "¿Cuál es su pizzería favorita?"
                 },
@@ -22,9 +22,9 @@
                         // Change type to "bar", "area", "spline", "pie",etc.
                         type: "column",
                         dataPoints: [
-                            { label: "Papa Jhons",  y: 10  },
-                            { label: "Dominoes", y: 23  },
-                            { label: "Pizza Hot", y: 25  }
+                            { label: "Papa Johns",  y: 10  ,  indexLabel:"10" },
+                            { label: "Dominos", y: 23 ,  indexLabel: "23" },
+                            { label: "PizzaHut", y: 25,  indexLabel: "45"  }
                         ]
                     }
                 ]

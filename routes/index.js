@@ -1,38 +1,40 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+    host     : '127.0.0.1',
+    user     : 'root',
+    password : 'sarahaime123',
+    database : 'numeros'
 });
 
+connection.connect();
 
-const AmiClient = require('asterisk-ami-client');
-let client = new AmiClient();
-/*
-client.connect('5001', 'sarahaime123', {host: '192.168.0.19', port: 0})
-    .then(amiConnection => {
+connection.query('SELECT cnat from pizzahut', function(err, rows, fields) {
+    if (!err)
+        console.log('The solution is pizzahut: ', rows);
+    else
+        console.log('Error while performing Query.');
+});
+connection.end();
 
-        client
-            .on('connect', () => console.log('connect'))
-            .on('event', event => console.log(event))
-            .on('data', chunk => console.log(chunk))
-            .on('response', response => console.log(response))
-            .on('disconnect', () => console.log('disconnect'))
-            .on('reconnection', () => console.log('reconnection'))
-            .on('internalError', error => console.log(error))
-            .action({
-                Action: 'Ping'
-            });
+connection.connect();
 
-        setTimeout(() => {
-            client.disconnect();
-        }, 5000);
+connection.query('SELECT cnat from dominos', function(err, rows, fields) {
+    if (!err)
+        console.log('The solution is dominos: ', rows);
+    else
+        console.log('Error while performing Query.');
+});
+connection.end();
 
-    })
-    .catch(error => console.log(error));
 
-*/
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.redirect("/resultados.html");
+});
 
 
 module.exports = router;
